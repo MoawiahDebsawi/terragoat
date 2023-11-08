@@ -33,17 +33,16 @@ jobs:
     runs-on: ubuntu-latest
     name: Run Prisma Cloud IaC Scan to check
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - id: iac-scan
-        name: Run Scan on CFT files in the repository
-        uses: prisma-cloud-shiftleft/iac-scan-action@53278c231c438216d99b463308a3cbed351ba0c3
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Run Prisma Cloud
+        id: Prisma Cloud
+        uses: bridgecrewio/checkov-action@master
+        env:
+          PRISMA_API_URL: https://api.jp.prismacloud.io/
         with:
-          # You will need Prisma Cloud API Access Token
-          # More details in https://github.com/prisma-cloud-shiftleft/iac-scan-action
-          prisma_api_url: ${{ secrets.PC_API_URI }}
-          access_key: ${{ secrets.PC_API_KEY }}
-          secret_key: ${{ secrets.PC_API_Secret }}
+          api-key: ${{ secrets.BC_API_KEY }}
           # Scan sources on Prisma Cloud are uniquely identified by their name
           asset_name: 'my-asset-name'
           # The service need to know the type of IaC being scanned
