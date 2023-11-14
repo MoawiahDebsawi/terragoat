@@ -23,6 +23,3 @@ resource "oci_objectstorage_bucket" "secretsquirrel" {
 }
 
 
-
-
-
