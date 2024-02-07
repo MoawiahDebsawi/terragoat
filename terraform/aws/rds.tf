@@ -30,6 +30,8 @@ resource "aws_rds_cluster" "app2-rds-cluster" {
   }
 }
 
+# added few spaces
+
 resource "aws_rds_cluster" "app3-rds-cluster" {
   cluster_identifier      = "app3-rds-cluster"
   allocated_storage       = 10
